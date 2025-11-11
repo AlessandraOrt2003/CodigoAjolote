@@ -1,0 +1,58 @@
+.root {
+    -ajolote-primary: #6A0DAD;
+    -ajolote-secondary: #8A2BE2;
+    -ajolote-accent: #9370DB;
+    -ajolote-light: #E6E6FA;
+    -background-light: #F8F8FF;
+    -text-dark: #2C003E;
+    -text-light: #6B7280;
+}
+
+.header {
+    -fx-background-color: linear-gradient(to right, -ajolote-primary, -ajolote-secondary);
+    -fx-padding: 15 30 0 30;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 2);
+}
+
+.header-top {
+    -fx-alignment: center;
+    -fx-spacing: 15;
+    -fx-padding: 15 0;
+}
+
+.app-title {
+    -fx-text-fill: white;
+    -fx-font-size: 28px;
+    -fx-font-weight: bold;
+    -fx-font-family: "Arial Rounded MT Bold";
+}
+
+.navigation-bar {
+    -fx-spacing: 0;
+    -fx-background-color: -ajolote-secondary;
+}
+
+.nav-button {
+    -fx-background-color: transparent;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-font-weight: bold;
+    -fx-padding: 15 25;
+    -fx-cursor: hand;
+}
+
+.nav-button:hover {
+    -fx-background-color: rgba(255, 255, 255, 0.1);
+}
+
+.nav-button.active {
+    -fx-background-color: white;
+    -fx-text-fill: -ajolote-primary;
+}
+
+.home-container {
+    -fx-padding: 40;
+    -fx-background-color: -background-light;
+}
+
+/* Agregar más estilos según necesites */
