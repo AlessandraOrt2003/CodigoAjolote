@@ -1,14 +1,112 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.layout.HBox?>
-<?import javafx.scene.text.TextFlow?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.TextAlignment?>
 
-<VBox spacing="25" styleClass="home-container" xmlns="http://javafx.com/javafx/11.0.1"
-      xmlns:fx="http://javafx.com/fxml/1"
-      fx:controller="controller.HomeController">
+<StackPane xmlns="http://javafx.com/javafx/11.0.1"
+           xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="controller.HomeController"
+           style="-fx-background-color: linear-gradient(to bottom right, #667eea 0%, #764ba2 100%);">
 
-    <!-- Tu contenido aquí -->
-</VBox>
+    <VBox alignment="CENTER" spacing="40">
+        <padding>
+            <Insets top="60" right="50" bottom="60" left="50"/>
+        </padding>
+
+        <!-- Logo o imagen principal -->
+        <VBox alignment="CENTER" spacing="15">
+            <ImageView fitHeight="140" fitWidth="140" preserveRatio="true">
+                <!-- AGREGADO: Placeholder con temática de ajolote -->
+                <Image url="https://via.placeholder.com/140x140/ffffff/667eea?text=🐉" />
+            </ImageView>
+
+            <!-- Título principal con nombre de la marca -->
+            <VBox alignment="CENTER" spacing="8">
+                <Label text="CODIGO AJOLOTE"
+                       style="-fx-font-size: 42px; -fx-font-weight: bold; -fx-text-fill: white; -fx-font-family: 'Arial Rounded MT Bold';"/>
+                <Label text="Aprende, programa y crece con nosotros"
+                       style="-fx-font-size: 18px; -fx-text-fill: #f0f0f0; -fx-text-alignment: center;"
+                       textAlignment="CENTER"/>
+            </VBox>
+        </VBox>
+
+        <!-- Descripción y características -->
+        <VBox alignment="CENTER" spacing="20" style="-fx-pref-width: 700px;">
+            <Label text="Transformamos el miedo a lo desconocido en oportunidades de aprendizaje"
+                   style="-fx-font-size: 16px; -fx-text-fill: white; -fx-text-alignment: center; -fx-font-style: italic;"
+                   textAlignment="CENTER"/>
+
+            <!-- Características principales -->
+            <HBox spacing="40" alignment="CENTER">
+                <VBox alignment="CENTER" spacing="8" style="-fx-pref-width: 180px;">
+                    <Label text="📚" style="-fx-font-size: 32px;"/>
+                    <Label text="Cursos Estructurados" style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px;"/>
+                    <Label text="Aprende programación paso a paso con proyectos reales"
+                           style="-fx-text-fill: #e8e8e8; -fx-font-size: 12px; -fx-wrap-text: true; -fx-text-alignment: center;"
+                           textAlignment="CENTER"/>
+                </VBox>
+
+                <VBox alignment="CENTER" spacing="8" style="-fx-pref-width: 180px;">
+                    <Label text="⚡" style="-fx-font-size: 32px;"/>
+                    <Label text="Aprendizaje Práctico" style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px;"/>
+                    <Label text="Ejercicios interactivos y código que puedes modificar"
+                           style="-fx-text-fill: #e8e8e8; -fx-font-size: 12px; -fx-wrap-text: true; -fx-text-alignment: center;"
+                           textAlignment="CENTER"/>
+                </VBox>
+
+                <VBox alignment="CENTER" spacing="8" style="-fx-pref-width: 180px;">
+                    <Label text="🎯" style="-fx-font-size: 32px;"/>
+                    <Label text="Tu Ritmo" style="-fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px;"/>
+                    <Label text="Avanza cuando quieras, sin presión y con apoyo constante"
+                           style="-fx-text-fill: #e8e8e8; -fx-font-size: 12px; -fx-wrap-text: true; -fx-text-alignment: center;"
+                           textAlignment="CENTER"/>
+                </VBox>
+            </HBox>
+        </VBox>
+
+        <!-- Botones de acción principales -->
+        <VBox alignment="CENTER" spacing="15">
+            <HBox spacing="20" alignment="CENTER">
+                <Button text="🚀 Explorar Cursos"
+                        onAction="#irACursos"
+                        style="-fx-background-color: #ffffff; -fx-text-fill: #667eea; -fx-font-weight: bold; -fx-font-size: 16px; -fx-padding: 15 30; -fx-background-radius: 25;"/>
+
+                <Button text="📖 Ver Tutoriales"
+                        onAction="#explorarCursosPopulares"
+                        style="-fx-background-color: rgba(255,255,255,0.2); -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 16px; -fx-padding: 15 30; -fx-background-radius: 25; -fx-border-color: white; -fx-border-radius: 25;"/>
+            </HBox>
+
+            <Button text="ℹ️ Acerca del Proyecto"
+                    onAction="#irAAcercaDe"
+                    style="-fx-background-color: transparent; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 14px; -fx-padding: 10 20; -fx-border-color: rgba(255,255,255,0.5); -fx-border-radius: 20;"/>
+        </VBox>
+
+        <!-- Información adicional y llamada a la acción -->
+        <VBox alignment="CENTER" spacing="10" style="-fx-padding: 20 0 0 0;">
+            <Label text="¿Primera vez programando?"
+                   style="-fx-text-fill: white; -fx-font-size: 14px; -fx-font-weight: bold;"/>
+            <Label text="Comienza con nuestro curso 'Introducción a la Programación' - ¡Es gratis!"
+                   style="-fx-text-fill: #e8e8e8; -fx-font-size: 12px; -fx-text-alignment: center;"
+                   textAlignment="CENTER"/>
+            <Button text="🎁 Comenzar Curso Gratis"
+                    onAction="#buscarCursos"
+                    style="-fx-background-color: #f39c12; -fx-text-fill: white; -fx-font-weight: bold; -fx-font-size: 13px; -fx-padding: 8 20; -fx-background-radius: 15;"/>
+        </VBox>
+
+        <!-- Footer informativo -->
+        <VBox alignment="CENTER" spacing="5" style="-fx-padding: 30 0 0 0;">
+            <Label text="+600,000 estudiantes confían en nosotros"
+                   style="-fx-text-fill: rgba(255,255,255,0.8); -fx-font-size: 11px;"/>
+            <Label text="Únete a la comunidad Codigo Ajolote hoy mismo"
+                   style="-fx-text-fill: rgba(255,255,255,0.6); -fx-font-size: 10px;"/>
+        </VBox>
+    </VBox>
+</StackPane>

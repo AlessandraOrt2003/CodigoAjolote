@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Hyperlink?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
+
+<VBox alignment="TOP_CENTER" spacing="20" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.AboutController">
+    <padding>
+        <Insets top="40" right="40" bottom="40" left="40"/>
+    </padding>
+
+    <!-- Título -->
+    <Label text="Acerca de CODIGO AJOLOTE" style="-fx-font-size: 28px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;">
+        <padding>
+            <Insets bottom="20"/>
+        </padding>
+    </Label>
+
+    <!-- Logo o imagen -->
+    <ImageView fitHeight="120" fitWidth="120" preserveRatio="true">
+        <!-- AGREGADO: Imagen de placeholder para el logo -->
+        <Image url="https://via.placeholder.com/120x120/3498db/ffffff?text=AJOLOTE" />
+    </ImageView>
+
+    <!-- Información de la aplicación -->
+    <VBox spacing="12" alignment="CENTER_LEFT" style="-fx-background-color: #f8f9fa; -fx-padding: 15; -fx-background-radius: 10;">
+        <Label text="CODIGO AJOLOTE - Plataforma Educativa" style="-fx-font-weight: bold; -fx-font-size: 16px; -fx-text-fill: #2980b9;"/>
+        <Label text="Versión: 1.0.0" style="-fx-font-size: 14px;"/>
+        <Label text="Desarrollado por: Alessandra Ortiz" style="-fx-font-size: 14px;"/>
+        <Label text="© 2025 Todos los derechos reservados" style="-fx-font-size: 12px; -fx-text-fill: #7f8c8d;"/>
+    </VBox>
+
+    <!-- Descripción -->
+    <VBox spacing="10" alignment="CENTER_LEFT" style="-fx-pref-width: 500px;">
+        <Label text="Nuestra Misión:" style="-fx-font-weight: bold; -fx-font-size: 14px;"/>
+        <TextFlow style="-fx-pref-width: 500px;">
+            <Text text="Demostrar que la programación no es solo para expertos, sino una herramienta que cualquiera puede entender y usar para crear soluciones digitales. " style="-fx-font-size: 13px;"/>
+            <Text text="Transformamos el miedo a lo desconocido en oportunidades de aprendizaje." style="-fx-font-size: 13px; -fx-font-style: italic;"/>
+        </TextFlow>
+    </VBox>
+
+    <!-- Información de contacto -->
+    <VBox spacing="8" alignment="CENTER" style="-fx-background-color: #e8f4f8; -fx-padding: 15; -fx-background-radius: 10;">
+        <Label text="Contacto del Desarrollador:" style="-fx-font-weight: bold; -fx-text-fill: #16a085;"/>
+        <Label text="Andrea Alessandra Ortiz Jaime"/>
+        <Hyperlink text="✉️ andrea.ortiz.jaime@alumnos.uacm.edu.mx" onAction="#openContact" style="-fx-font-size: 13px; -fx-text-fill: #3498db;"/>
+    </VBox>
+
+    <!-- Tecnologías utilizadas -->
+    <VBox spacing="8" alignment="CENTER_LEFT" style="-fx-pref-width: 400px;">
+        <Label text="Tecnologías Utilizadas:" style="-fx-font-weight: bold; -fx-font-size: 14px;"/>
+        <HBox spacing="20" alignment="CENTER_LEFT">
+            <VBox spacing="5">
+                <Label text="• JavaFX 11" style="-fx-font-size: 13px;"/>
+                <Label text="• FXML" style="-fx-font-size: 13px;"/>
+                <Label text="• CSS" style="-fx-font-size: 13px;"/>
+            </VBox>
+            <VBox spacing="5">
+                <Label text="• MVC Pattern" style="-fx-font-size: 13px;"/>
+                <Label text="• Scene Builder" style="-fx-font-size: 13px;"/>
+                <Label text="• Git/GitHub" style="-fx-font-size: 13px;"/>
+            </VBox>
+        </HBox>
+    </VBox>
+
+    <!-- Enlace al repositorio -->
+    <VBox spacing="5" alignment="CENTER">
+        <Label text="Repositorio del Proyecto:" style="-fx-font-weight: bold;"/>
+        <Hyperlink text="🌐 GitHub - CodigoAjolote" style="-fx-font-size: 13px; -fx-text-fill: #e74c3c;"/>
+        <Label text="https://github.com/AlessandraOrt2003/CodigoAjolote.git" style="-fx-font-size: 11px; -fx-text-fill: #95a5a6;"/>
+    </VBox>
+</VBox>

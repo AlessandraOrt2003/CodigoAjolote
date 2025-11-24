@@ -1,27 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuItem?>
 
-<BorderPane fx:id="mainContainer" xmlns="http://javafx.com/javafx/11.0.1"
+<BorderPane fx:id="mainBorderPane"
+            xmlns="http://javafx.com/javafx/11.0.1"
             xmlns:fx="http://javafx.com/fxml/1"
             fx:controller="controller.MainController">
 
+    <!-- Menú superior -->
     <top>
-        <VBox styleClass="header">
-            <HBox styleClass="header-top">
-                <Label text="CODIGO AJOLOTE" styleClass="app-title"/>
-            </HBox>
-
-            <HBox fx:id="navigationBar" styleClass="navigation-bar">
-                <Button fx:id="homeButton" text="Inicio" styleClass="nav-button"/>
-                <Button fx:id="cursosButton" text="Cursos" styleClass="nav-button"/>
-                <Button fx:id="aboutButton" text="Acerca de" styleClass="nav-button"/>
-            </HBox>
-        </VBox>
+        <MenuBar>
+            <Menu text="Navegación">
+                <MenuItem text="Inicio" onAction="#cargarVistaHome"/>
+                <MenuItem text="Cursos" onAction="#cargarVistaCursos"/>
+                <MenuItem text="Acerca de" onAction="#cargarVistaAbout"/>
+            </Menu>
+        </MenuBar>
     </top>
+
+    <!-- Centro: Aquí se cargan home-view.fxml, cursos-view.fxml, about-view.fxml -->
+    <!-- El MainController carga las vistas aquí automáticamente -->
 
 </BorderPane>

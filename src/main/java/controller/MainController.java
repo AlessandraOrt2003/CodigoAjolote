@@ -3,63 +3,85 @@ package controller;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
-import javafx.scene.Node;
-import javafx.scene.control.Button;
+import javafx.scene.Parent;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class MainController implements Initializable {
 
-    @FXML private BorderPane mainContainer;
-    @FXML private HBox navigationBar;
-    @FXML private Button homeButton;
-    @FXML private Button cursosButton;
-    @FXML private Button aboutButton;
+    @FXML
+    private BorderPane mainBorderPane;
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        setupNavigation();
-        loadHomeView();
+        System.out.println("MainController inicializado - Cargando vista inicial...");
+        // Cargar la vista home por defecto al iniciar
+        cargarVistaHome();
     }
 
-    private void setupNavigation() {
-        homeButton.setOnAction(e -> loadHomeView());
-        cursosButton.setOnAction(e -> loadCursosView());
-        aboutButton.setOnAction(e -> loadAboutView());
-    }
-
-    private void loadHomeView() {
-        loadView("/home-view.fxml");
-        setActiveButton(homeButton);
-    }
-
-    private void loadCursosView() {
-        loadView("/cursos-view.fxml");
-        setActiveButton(cursosButton);
-    }
-
-    private void loadAboutView() {
-        loadView("/about-view.fxml");
-        setActiveButton(aboutButton);
-    }
-
-    private void loadView(String fxmlPath) {
+    // Método para cambiar las vistas centrales
+    public void cargarVista(String fxmlPath) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
-            Node view = loader.load();
-            mainContainer.setCenter(view);
+            Parent vista = loader.load();
+
+            // Pasar la referencia del MainController a los controladores hijos
+            Object controlador = loader.getController();
+            if (controlador instanceof HomeController) {
+                ((HomeController) controlador).setMainController(this);
+            }
+            // AGREGADO: Pasar referencia a CursosController
+            else if (controlador instanceof CursosController) {
+                // Preparado para futuras expansiones en Sprint 2
+                System.out.println("CursosController cargado - Listo para Sprint 2");
+            }
+            // AGREGADO: Pasar referencia a AboutController
+            else if (controlador instanceof AboutController) {
+                // Preparado para futuras expansiones
+                System.out.println("AboutController cargado");
+            }
+
+            mainBorderPane.setCenter(vista);
+            System.out.println("Vista cargada: " + fxmlPath);
+
         } catch (Exception e) {
+            System.err.println("Error al cargar la vista: " + fxmlPath);
             e.printStackTrace();
         }
     }
 
-    private void setActiveButton(Button activeButton) {
-        homeButton.getStyleClass().remove("active");
-        cursosButton.getStyleClass().remove("active");
-        aboutButton.getStyleClass().remove("active");
-        activeButton.getStyleClass().add("active");
+    // Métodos específicos para cada vista
+    public void cargarVistaHome() {
+        cargarVista("/home-view.fxml");
+    }
+
+    public void cargarVistaCursos() {
+        cargarVista("/cursos-view.fxml");
+    }
+
+    public void cargarVistaAbout() {
+        cargarVista("/about-view.fxml");
+    }
+
+    // MÉTODO AGREGADO: Para navegación desde el menú principal (si existe)
+    @FXML
+    private void cargarHomeDesdeMenu() {
+        cargarVistaHome();
+    }
+
+    @FXML
+    private void cargarCursosDesdeMenu() {
+        cargarVistaCursos();
+    }
+
+    @FXML
+    private void cargarAboutDesdeMenu() {
+        cargarVistaAbout();
+    }
+
+    // MÉTODO AGREGADO: Para futuras expansiones (Sprint 3-4)
+    public BorderPane getMainBorderPane() {
+        return mainBorderPane;
     }
 }
