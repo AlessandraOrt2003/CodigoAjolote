@@ -4,24 +4,41 @@
 <?import javafx.scene.control.MenuBar?>
 <?import javafx.scene.control.Menu?>
 <?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
 
 <BorderPane fx:id="mainBorderPane"
             xmlns="http://javafx.com/javafx/11.0.1"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="controller.MainController">
+            fx:controller="controller.MainController"
+            stylesheets="@/styles.css">
 
-    <!-- Menú superior -->
+    <!-- Top: Menú de navegación -->
     <top>
-        <MenuBar>
-            <Menu text="Navegación">
-                <MenuItem text="Inicio" onAction="#cargarVistaHome"/>
-                <MenuItem text="Cursos" onAction="#cargarVistaCursos"/>
-                <MenuItem text="Acerca de" onAction="#cargarVistaAbout"/>
+        <MenuBar style="-fx-background-color: #2c3e50;">
+            <Menu text="Inicio" style="-fx-text-fill: white;">
+                <MenuItem text="🏠 Página Principal" onAction="#cargarHomeDesdeMenu"/>
+                <SeparatorMenuItem/>
+                <MenuItem text="🚪 Salir" />
+            </Menu>
+            <Menu text="Cursos" style="-fx-text-fill: white;">
+                <MenuItem text="📚 Ver Todos los Cursos" onAction="#cargarCursosDesdeMenu"/>
+                <MenuItem text="⭐ Cursos Populares" />
+            </Menu>
+            <Menu text="Ayuda" style="-fx-text-fill: white;">
+                <MenuItem text="ℹ️ Acerca de Codigo Ajolote" onAction="#cargarAboutDesdeMenu"/>
             </Menu>
         </MenuBar>
     </top>
 
-    <!-- Centro: Aquí se cargan home-view.fxml, cursos-view.fxml, about-view.fxml -->
-    <!-- El MainController carga las vistas aquí automáticamente -->
+    <!-- Center: Aquí se cargan dinámicamente las vistas home, cursos, about, leccion-detalle -->
+    <!-- El contenido se carga automáticamente por el MainController -->
+
+    <!-- Bottom: Barra de estado -->
+    <bottom>
+        <MenuBar style="-fx-background-color: #34495e; -fx-pref-height: 25;">
+            <Menu text="CODIGO AJOLOTE v2.0 | Sprint 3 - Multimedia | Conectado ✅"
+                  style="-fx-text-fill: #ecf0f1; -fx-disabled: true;"/>
+        </MenuBar>
+    </bottom>
 
 </BorderPane>

@@ -7,6 +7,10 @@ import javafx.scene.Parent;
 import javafx.scene.layout.BorderPane;
 import java.net.URL;
 import java.util.ResourceBundle;
+import controller.HomeController;
+import controller.CursosController;
+import controller.LeccionDetalleController;
+import controller.AboutController;
 
 public class MainController implements Initializable {
 
@@ -16,30 +20,27 @@ public class MainController implements Initializable {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         System.out.println("MainController inicializado - Cargando vista inicial...");
-        // Cargar la vista home por defecto al iniciar
         cargarVistaHome();
     }
 
-    // Método para cambiar las vistas centrales
     public void cargarVista(String fxmlPath) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource(fxmlPath));
             Parent vista = loader.load();
 
-            // Pasar la referencia del MainController a los controladores hijos
+            // Pasar referencia del MainController a controladores hijos
             Object controlador = loader.getController();
             if (controlador instanceof HomeController) {
                 ((HomeController) controlador).setMainController(this);
             }
-            // AGREGADO: Pasar referencia a CursosController
             else if (controlador instanceof CursosController) {
-                // Preparado para futuras expansiones en Sprint 2
-                System.out.println("CursosController cargado - Listo para Sprint 2");
+                ((CursosController) controlador).setMainController(this);
             }
-            // AGREGADO: Pasar referencia a AboutController
+            else if (controlador instanceof LeccionDetalleController) {
+                ((LeccionDetalleController) controlador).setMainController(this);
+            }
             else if (controlador instanceof AboutController) {
-                // Preparado para futuras expansiones
-                System.out.println("AboutController cargado");
+                ((AboutController) controlador).setMainController(this);
             }
 
             mainBorderPane.setCenter(vista);
@@ -49,6 +50,11 @@ public class MainController implements Initializable {
             System.err.println("Error al cargar la vista: " + fxmlPath);
             e.printStackTrace();
         }
+    }
+
+    public void cambiarVistaCentral(Parent nuevaVista) {
+        mainBorderPane.setCenter(nuevaVista);
+        System.out.println("Vista central cambiada dinámicamente");
     }
 
     // Métodos específicos para cada vista
@@ -64,24 +70,22 @@ public class MainController implements Initializable {
         cargarVista("/about-view.fxml");
     }
 
-    // MÉTODO AGREGADO: Para navegación desde el menú principal (si existe)
+    // MÉTODOS PARA EL MENÚ FXML
     @FXML
     private void cargarHomeDesdeMenu() {
+        System.out.println("🏠 Navegando a Home desde menú...");
         cargarVistaHome();
     }
 
     @FXML
     private void cargarCursosDesdeMenu() {
+        System.out.println("📚 Navegando a Cursos desde menú...");
         cargarVistaCursos();
     }
 
     @FXML
     private void cargarAboutDesdeMenu() {
+        System.out.println("ℹ️ Navegando a About desde menú...");
         cargarVistaAbout();
-    }
-
-    // MÉTODO AGREGADO: Para futuras expansiones (Sprint 3-4)
-    public BorderPane getMainBorderPane() {
-        return mainBorderPane;
     }
 }

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ProgressBar?>
+<?import javafx.scene.web.WebView?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Priority?>
+
+<VBox xmlns="http://javafx.com/javafx/11.0.1"
+      xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="controller.LeccionDetalleController"
+      spacing="20"
+      style="-fx-padding: 20; -fx-background-color: white;">
+
+    <!-- Header con información de la lección -->
+    <HBox spacing="20" alignment="TOP_LEFT">
+        <!-- Icono del tipo de lección -->
+        <ImageView fx:id="iconoTipoImageView"
+                   fitHeight="80"
+                   fitWidth="80"
+                   preserveRatio="true"
+                   style="-fx-border-radius: 10; -fx-border-color: #ddd;"/>
+
+        <!-- Información de la lección -->
+        <VBox spacing="8" HBox.hgrow="ALWAYS">
+            <Label fx:id="tituloLeccionLabel"
+                   text="Título de la Lección"
+                   style="-fx-font-size: 24px; -fx-font-weight: bold; -fx-text-fill: #2c3e50; -fx-wrap-text: true;"/>
+
+            <Label fx:id="descripcionLeccionLabel"
+                   text="Descripción de la lección..."
+                   style="-fx-text-fill: #7f8c8d; -fx-font-size: 14px; -fx-wrap-text: true;"/>
+
+            <GridPane hgap="20" vgap="5">
+                <columnConstraints>
+                    <ColumnConstraints halignment="LEFT" prefWidth="200"/>
+                    <ColumnConstraints halignment="LEFT" prefWidth="300"/>
+                </columnConstraints>
+
+                <Label fx:id="tipoLeccionLabel" text="Tipo: -" GridPane.rowIndex="0" GridPane.columnIndex="0"
+                       style="-fx-text-fill: #555; -fx-font-size: 13px;"/>
+                <Label fx:id="duracionLeccionLabel" text="Duración: -" GridPane.rowIndex="0" GridPane.columnIndex="1"
+                       style="-fx-text-fill: #555; -fx-font-size: 13px;"/>
+
+                <Label fx:id="moduloLabel" text="Módulo: -" GridPane.rowIndex="1" GridPane.columnIndex="0"
+                       style="-fx-text-fill: #555; -fx-font-size: 13px;"/>
+                <Label fx:id="cursoLabel" text="Curso: -" GridPane.rowIndex="1" GridPane.columnIndex="1"
+                       style="-fx-text-fill: #555; -fx-font-size: 13px;"/>
+            </GridPane>
+
+            <!-- Barra de progreso -->
+            <VBox spacing="5" style="-fx-padding: 10 0 0 0;">
+                <Label text="Progreso de la lección:" style="-fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+                <ProgressBar fx:id="progresoLeccionBar"
+                             style="-fx-pref-width: 300px; -fx-accent: #27ae60;"
+                             progress="0.0"/>
+            </VBox>
+        </VBox>
+    </HBox>
+
+    <!-- Controles de navegación -->
+    <HBox spacing="15" alignment="CENTER">
+        <Button fx:id="botonAnterior"
+                text="⬅️ Lección Anterior"
+                style="-fx-background-color: #95a5a6; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10 20; -fx-background-radius: 5;"
+                disable="true"/>
+
+        <Button fx:id="botonCompletar"
+                text="🎯 Marcar como Completada"
+                style="-fx-background-color: #27ae60; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10 20; -fx-background-radius: 5;"/>
+
+        <Button fx:id="botonSiguiente"
+                text="➡️ Siguiente Lección"
+                style="-fx-background-color: #3498db; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10 20; -fx-background-radius: 5;"/>
+
+        <Button fx:id="botonVolver"
+                text="📚 Volver a Cursos"
+                style="-fx-background-color: #e74c3c; -fx-text-fill: white; -fx-font-weight: bold; -fx-padding: 10 20; -fx-background-radius: 5;"/>
+    </HBox>
+
+    <!-- Contenido multimedia -->
+    <VBox spacing="10" VBox.vgrow="ALWAYS">
+        <Label text="Contenido de la Lección:"
+               style="-fx-font-size: 18px; -fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+
+        <WebView fx:id="videoWebView"
+                 style="-fx-pref-height: 500px; -fx-border-color: #e0e0e0; -fx-border-radius: 5;"
+                 VBox.vgrow="ALWAYS"/>
+    </VBox>
+
+    <!-- Footer informativo -->
+    <HBox spacing="20" alignment="CENTER" style="-fx-padding: 20 0 0 0;">
+        <VBox spacing="5" alignment="CENTER_LEFT">
+            <Label text="💡 Consejos para el aprendizaje:" style="-fx-font-weight: bold; -fx-text-fill: #2c3e50;"/>
+            <Label text="• Toma notas durante la lección • Practica con los ejercicios • Repasa regularmente"
+                   style="-fx-text-fill: #7f8c8d; -fx-font-size: 12px;"/>
+        </VBox>
+    </HBox>
+
+</VBox>

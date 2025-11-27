@@ -3,70 +3,82 @@ package controller;
 import javafx.fxml.Initializable;
 import javafx.fxml.FXML;
 import javafx.event.ActionEvent;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import service.UserDataManager;
+import controller.MainController;
 import java.net.URL;
 import java.util.ResourceBundle;
 
 public class HomeController implements Initializable {
 
     private MainController mainController;
+    private UserDataManager userDataManager;
 
-    // Método para recibir la referencia del MainController
     public void setMainController(MainController mainController) {
         this.mainController = mainController;
     }
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        // Inicialización de la vista home
-        System.out.println("HomeController inicializado - Vista Home cargada correctamente");
+        this.userDataManager = new UserDataManager();
+        mostrarPanelProgreso();
     }
 
-    // Método para ir a la vista de cursos
+    private void mostrarPanelProgreso() {
+        userDataManager.mostrarEstadisticas();
+        // Los labels fueron eliminados porque no existen en el nuevo home-view.fxml
+    }
+
     @FXML
     public void irACursos(ActionEvent event) {
         if (mainController != null) {
             mainController.cargarVistaCursos();
-        } else {
-            System.out.println("Error: MainController no está disponible");
-            // Posible mejora: mostrar alerta al usuario
         }
     }
 
-    // Método para ir a la vista about
     @FXML
     public void irAAcercaDe(ActionEvent event) {
         if (mainController != null) {
             mainController.cargarVistaAbout();
-        } else {
-            System.out.println("Error: MainController no está disponible");
-            // Posible mejora: mostrar alerta al usuario
         }
     }
 
-    // MÉTODO ADICIONAL: Para volver a home desde otras vistas (si es necesario)
     @FXML
     public void irAHome(ActionEvent event) {
         if (mainController != null) {
             mainController.cargarVistaHome();
-        } else {
-            System.out.println("Error: MainController no está disponible");
         }
     }
 
-    // MÉTODO ADICIONAL: Para futuras expansiones (Sprint 3-4)
     @FXML
     public void explorarCursosPopulares(ActionEvent event) {
         System.out.println("Explorando cursos populares...");
-        // Futura implementación para Sprint 3-4
         if (mainController != null) {
             mainController.cargarVistaCursos();
         }
     }
 
-    // MÉTODO ADICIONAL: Para búsqueda rápida (Sprint 4)
     @FXML
     public void buscarCursos(ActionEvent event) {
-        System.out.println("Función de búsqueda activada - Para implementar en Sprint 4");
-        // Lógica de búsqueda para el Sprint 4
+        System.out.println("🔍 Función de búsqueda activada desde Home");
+        if (mainController != null) {
+            mainController.cargarVistaCursos();
+        }
+    }
+
+    @FXML
+    public void verEstadisticasCompletas(ActionEvent event) {
+        Alert alert = new Alert(AlertType.INFORMATION);
+        alert.setTitle("Estadísticas Completas");
+        alert.setHeaderText("📊 Tu Progreso de Aprendizaje");
+        alert.setContentText(
+                "👤 Usuario: " + userDataManager.getUserData().getNombreUsuario() + "\n" +
+                        "📈 Progreso General: " + String.format("%.1f", userDataManager.getProgresoGeneral()) + "%\n" +
+                        "✅ Lecciones Completadas: " + userDataManager.getTotalLeccionesCompletadas() + "\n" +
+                        "🎓 Cursos Inscritos: " + userDataManager.getTotalCursosInscritos() + "\n\n" +
+                        "🏆 ¡Sigue así! Cada lección te acerca a tus metas."
+        );
+        alert.showAndWait();
     }
 }
